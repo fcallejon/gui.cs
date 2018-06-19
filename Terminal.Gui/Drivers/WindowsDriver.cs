@@ -510,10 +510,9 @@ namespace Terminal.Gui {
 			case WindowsConsole.EventType.Key:
 				if (inputEvent.KeyEvent.bKeyDown == false)
 					return;
-				if (inputEvent.KeyEvent.UnicodeChar == 0)
-					return;
-				var map = MapKey (ToConsoleKeyInfo (inputEvent.KeyEvent));
-				if (map == (Key)0xffffffff)
+
+				var map = MapKey(ToConsoleKeyInfo(inputEvent.KeyEvent));
+				if (inputEvent.KeyEvent.UnicodeChar == 0 && map == (Key)0xffffffff)
 					return;
 				keyHandler (new KeyEvent (map));
 				break;
